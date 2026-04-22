@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Add Subscription{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center gap-3 mb-4">
+    <a href="{{ url_for('subscriptions') }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i> Back
+    </a>
+    <div class="page-header mb-0">Add Subscription</div>
+</div>
+
+<div class="card p-4" style="max-width: 600px;">
+    <form method="POST">
+        <div class="row g-3">
+            <div class="col-12">
+                <label class="form-label">Subscriber</label>
+                <select name="user_id" class="form-select" required>
+                    <option value="">-- Select a subscriber --</option>
+                    {% for user in users %}
+                    <option value="{{ user.user_id }}">
+                        {{ user.first_name }} {{ user.last_name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Plan</label>
+                <select name="plan_id" class="form-select" required>
+                    <option value="">-- Select a plan --</option>
+                    {% for plan in plans %}
+                    <option value="{{ plan.plan_id }}">
+                        {{ plan.plan_name }} — ₹{{ "{:,.0f}".format(plan.price) }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Start Date</label>
+                <input type="date" name="start_date" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">End Date</label>
+                <input type="date" name="end_date" class="form-control" required>
+            </div>
+            <div class="col-12 mt-2">
+                <button type="submit" class="btn btn-danger w-100">
+                    <i class="bi bi-card-checklist me-1"></i> Add Subscription
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

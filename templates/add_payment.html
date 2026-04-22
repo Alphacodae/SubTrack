@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Record Payment{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center gap-3 mb-4">
+    <a href="{{ url_for('payments') }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i> Back
+    </a>
+    <div class="page-header mb-0">Record Payment</div>
+</div>
+
+<div class="card p-4" style="max-width: 600px;">
+    <form method="POST">
+        <div class="row g-3">
+            <div class="col-12">
+                <label class="form-label">Select Invoice</label>
+                <select name="invoice_id" class="form-select" required>
+                    <option value="">-- Select a pending invoice --</option>
+                    {% for inv in invoices %}
+                    <option value="{{ inv.invoice_id }}">
+                        #{{ inv.invoice_id }} — {{ inv.first_name }} {{ inv.last_name }}
+                        (₹{{ "{:,.0f}".format(inv.amount_due) }} due {{ inv.due_date }})
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Amount Paid (₹)</label>
+                <input type="number" name="amount_paid" class="form-control" min="1" step="0.01" required>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Payment Method</label>
+                <select name="payment_method" class="form-select" required>
+                    <option value="Cash">Cash</option>
+                    <option value="UPI">UPI</option>
+                    <option value="Card">Card</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="col-12 mt-2">
+                <button type="submit" class="btn btn-danger w-100">
+                    <i class="bi bi-cash me-1"></i> Record Payment
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

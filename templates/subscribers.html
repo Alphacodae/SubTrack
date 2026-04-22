@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Subscribers{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="page-header mb-0">Subscribers</div>
+    <a href="{{ url_for('add_subscriber') }}" class="btn btn-danger">
+        <i class="bi bi-plus-lg me-1"></i> Add Subscriber
+    </a>
+</div>
+
+<div class="card p-4">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Joined</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td><strong>{{ user.first_name }} {{ user.last_name }}</strong></td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.phone }}</td>
+                <td>
+                    <span class="badge {{ 'badge-active' if user.status == 'Active' else 'badge-expired' }}">
+                        {{ user.status }}
+                    </span>
+                </td>
+                <td>{{ user.created_at.strftime('%d %b %Y') }}</td>
+                <td>
+                    <a href="{{ url_for('delete_subscriber', user_id=user.user_id) }}"
+                       class="btn btn-sm btn-outline-danger"
+                       onclick="return confirm('Delete this subscriber?')">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="6" class="text-center text-muted">No subscribers yet</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

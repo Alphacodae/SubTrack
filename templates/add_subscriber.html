@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Add Subscriber{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center gap-3 mb-4">
+    <a href="{{ url_for('subscribers') }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i> Back
+    </a>
+    <div class="page-header mb-0">Add Subscriber</div>
+</div>
+
+<div class="card p-4" style="max-width: 600px;">
+    <form method="POST">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">First Name</label>
+                <input type="text" name="first_name" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Last Name</label>
+                <input type="text" name="last_name" class="form-control" required>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Phone</label>
+                <input type="text" name="phone" class="form-control" maxlength="15">
+            </div>
+            <div class="col-12">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+            <div class="col-12 mt-2">
+                <button type="submit" class="btn btn-danger w-100">
+                    <i class="bi bi-person-plus me-1"></i> Add Subscriber
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
