@@ -170,14 +170,6 @@ See [requirements.txt](requirements.txt) for complete list:
 
 Pull requests are welcome! For major changes, please open an issue first to discuss proposed changes.
 
-## 📄 License
-
-This project is licensed under the MIT License - see LICENSE file for details.
-
-## 👤 Author
-
-Developed collaboratively. For questions or support, please open an issue on GitHub.
-
 ---
 
 **Last Updated**: April 2026
